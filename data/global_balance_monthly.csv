@@ -1,0 +1,16 @@
+release_date,source,metric,value,unit,period,note
+2026-09-11,IEA OMR Sep 2026,world_supply_2026,100.7,mb/d,2026,down 5.7 mb/d y/y
+2026-09-11,IEA OMR Sep 2026,world_demand_change_2026,-2.5,mb/d,2026,940 kb/d steeper than August report
+2026-09-11,IEA OMR Sep 2026,world_demand_change_2027,2.6,mb/d,2027,recovery narrowly offsets 2026 losses
+2026-09-11,IEA OMR Sep 2026,gulf_diesel_net_exports_aug,390,kb/d,2026-08,just over a quarter of pre-war levels
+2026-09-11,IEA OMR Sep 2026,gulf_plus_russia_diesel_export_loss_vs_feb,-1600,kb/d,2026-08,about 45 percent of global seaborne diesel trade pre-war
+2026-09-09,EIA STEO Sep 2026,brent_avg_aug,91,usd/bbl,2026-08,up 7 from July
+2026-09-09,EIA STEO Sep 2026,brent_forecast_2h26,90,usd/bbl,2026H2,
+2026-09-09,EIA STEO Sep 2026,brent_forecast_2027,74,usd/bbl,2027,inventories rebuild as production rises
+2026-09-09,EIA STEO Sep 2026,us_distillate_stocks_forecast,100,mb,2026-09,expected to fall below 100 mb and stay below five-year low through much of 2027
+2026-08-12,IEA OMR Aug 2026,world_demand_change_2026,-1.6,mb/d,2026,superseded by September
+2026-07-10,IEA OMR Jul 2026,world_supply_jun,98.8,mb/d,2026-06,rebound of 4.1 mb/d on partial Hormuz resumption; still 9.4 mb/d below pre-war
+2026-05-13,IEA OMR May 2026,gulf_shut_in_peak,14.4,mb/d,2026-04,output below pre-war levels; cumulative losses over 1 billion bbl
+2026-05-13,IEA OMR May 2026,observed_inventory_draw_mar_apr,250,mb,2026-03 to 2026-04,about 4 mb/d including oil on water
+2026-04-14,IEA OMR Apr 2026,hormuz_flow_early_apr,3.8,mb/d,2026-04,crude plus products plus NGL; over 20 mb/d in February
+2026-09-06,OPEC+ statement,opec_plus_october_quota_change,0,kb/d,2026-10,freeze after 188 kb/d September increase; about 2 mb/d separate cuts remain

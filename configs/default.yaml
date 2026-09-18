@@ -1,0 +1,92 @@
+# Every choice that could move a result is fixed here before anything runs.
+
+eia:
+  api_key_env: EIA_API_KEY
+  start: "2015-01-02"
+  weekly:                              # EIA v2 series ids, all weekly
+    crude_stocks_ex_spr: WCESTUS1      # kb
+    crude_stocks_cushing: W_EPC0_SAX_YCUOK_MBBL
+    spr_stocks: WCSSTUS1
+    crude_production: WCRFPUS2         # kb/d
+    crude_imports: WCRIMUS2
+    crude_exports: WCREXUS2
+    refinery_inputs: WCRRIUS2
+    refinery_utilization: WPULEUS3     # percent
+    distillate_stocks: WDISTUS1        # kb
+    distillate_production: WDIRPUS2    # kb/d
+    distillate_imports: WDIIMUS2
+    distillate_exports: WDIEXUS2
+    distillate_product_supplied: WDIUPUS2
+  daily_prices:                        # EIA spot, daily
+    wti_cushing: RWTC
+    brent: RBRTE
+    ulsd_nyh: EER_EPD2DXL0_PF4_Y35NY_DPG
+    ulsd_usgc: EER_EPD2DXL0_PF4_RGC_DPG          # Gulf Coast ULSD, USD/gal
+    gasoline_usgc: EER_EPMRU_PF4_RGC_DPG         # Gulf Coast conventional regular gasoline, USD/gal
+
+cftc:
+  url: https://publicreporting.cftc.gov/resource/72hh-3qpy.json   # disaggregated, futures only
+  start: "2015-01-01"
+  contracts:                           # CFTC contract market codes; stable across the 2022 WTI renaming
+    wti: "067651"
+    ulsd: "022651"
+
+regime:
+  events_file: data/events.csv
+  # regime label applies from the event date until the next event with a different label
+  labels: [pre, war, partial]
+
+model:
+  consensus_proxy: rolling_mean
+  consensus_window_weeks: 8
+  zscore_window_weeks: 52
+  adjustment_flag_sd: 2.0
+
+forecast:                              # next-week reported crude stock change
+  target: crude_reported_change_kb
+  features: [crude_production, crude_imports, crude_exports, refinery_inputs, refinery_utilization, crude_stocks_cushing]
+  lags: [1, 2, 3, 4]
+  train_window_weeks: 156
+  refit_every_weeks: 4
+  models: [naive, ridge, gbm]
+  bootstrap_draws: 1000
+  seed: 42
+
+event_study:
+  horizon_weeks: [1, 2, 4]
+  quantiles: 5
+  min_weeks: 104
+  by_regime: true
+  min_weeks_quantile: 60               # a regime shorter than this gets a slope, not a quintile sort
+  min_weeks_slope: 20                  # shorter than this is reported as skipped
+  bootstrap_draws: 1000
+  seed: 42
+
+scenario:                              # Hormuz reopening, stated relative to today
+  gulf_shut_in_current_mbd: 9.4        # IEA July 2026 OMR, June data: world output 9.4 mb/d below pre-war. The scenarios are stated relative to this level
+  gulf_shut_in_peak_mbd: 14.4          # IEA May OMR, April peak, for reference
+  reopening_fractions: [0.25, 0.50, 0.75, 1.00]   # share of the current shut-in that comes back
+  months_to_full: [3, 6, 9]
+  demand_recovery_per_mbd_supply: 0.25 # ASSUMPTION: IEA has 2026 demand -2.5 and 2027 +2.6 mb/d against a supply swing near 10; ratio about 0.25
+  us_export_giveback_per_mbd_supply: 0.10  # ASSUMPTION: part of the Atlantic Basin export surge unwinds as Gulf barrels return
+  refresh_from: data/global_balance_monthly.csv
+
+refiners:                              # commodity to company: benchmark crack -> reported refining margin per barrel
+  margins_file: data/refiner_margins.csv
+  monthly_prices_file: data/eia_spot_monthly.csv   # committed EIA monthly averages; used when data/prices_daily.csv is absent
+  companies: [VLO]                     # one model per company; a second company needs its own sourced rows in margins_file
+  benchmark: {gasoline: gasoline_usgc, distillate: ulsd_usgc, crude: brent}   # Gulf Coast 3-2-1 vs Brent, fixed before running
+  min_train_quarters: 8
+  bootstrap_draws: 1000
+  seed: 42
+  eps_sensitivity:                     # what one USD/bbl of refining margin is worth per share per quarter; inputs from the Q2 2026 release
+    throughput_kbd: 2950
+    days: 92
+    tax_rate: 0.21
+    diluted_shares_mm: 294
+
+notes:
+  dir: notes
+
+output:
+  dir: results

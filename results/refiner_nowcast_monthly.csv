@@ -1,0 +1,2 @@
+ticker,quarter,asof,n_train,crack,intercept,slope,pred,naive,train_crack_max,extrapolating,resid_sd,days_in_quarter_so_far,band_low,band_high,change_vs_last_reported
+VLO,2026Q3,2026-08-31,16,61.57749999999999,2.1956229082898204,0.5865817970418369,38.31586351563353,23.62,39.53883076923077,True,1.8958873699625107,44,35.70383635756675,40.92789067370031,14.69586351563353

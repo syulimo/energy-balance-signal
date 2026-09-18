@@ -1,0 +1,53 @@
+{
+  "prices": "monthly",
+  "score": {
+    "pooled": {
+      "n": 8,
+      "mae_model": 1.3332139651542378,
+      "mae_naive": 2.2350000000000003,
+      "mae_gain_vs_naive": 0.9017860348457625,
+      "ci_low": -0.2483201347098027,
+      "ci_high": 2.4594456433328413,
+      "direction_hit_rate": 0.875
+    },
+    "VLO": {
+      "n": 8,
+      "mae_model": 1.3332139651542378,
+      "mae_naive": 2.2350000000000003,
+      "mae_gain_vs_naive": 0.9017860348457625,
+      "ci_low": -0.2483201347098027,
+      "ci_high": 2.4594456433328413,
+      "direction_hit_rate": 0.875
+    }
+  },
+  "in_sample_fit": {
+    "VLO": {
+      "n": 16,
+      "intercept": 2.1956229082898204,
+      "slope": 0.5865817970418369,
+      "r2": 0.8687063414300149,
+      "resid_sd": 1.8958873699625107
+    }
+  },
+  "nowcast": [
+    {
+      "ticker": "VLO",
+      "quarter": "2026Q3",
+      "asof": "2026-08-31",
+      "n_train": 16,
+      "crack": 61.57749999999999,
+      "intercept": 2.1956229082898204,
+      "slope": 0.5865817970418369,
+      "pred": 38.31586351563353,
+      "naive": 23.62,
+      "train_crack_max": 39.53883076923077,
+      "extrapolating": true,
+      "resid_sd": 1.8958873699625107,
+      "days_in_quarter_so_far": 44,
+      "band_low": 35.70383635756675,
+      "band_high": 40.92789067370031,
+      "change_vs_last_reported": 14.69586351563353
+    }
+  ],
+  "eps_per_usd_bbl_per_quarter": 0.7292721088435374
+}
