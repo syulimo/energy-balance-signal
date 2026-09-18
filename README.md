@@ -1,0 +1,2 @@
+# energy-balance-signal
+US crude and distillate weekly balances from EIA and CFTC data, a no-lookahead event study on WTI by regime, and a refiner margin nowcast from the Gulf Coast crack
