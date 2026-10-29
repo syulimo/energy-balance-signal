@@ -2,7 +2,13 @@
 
 ![tests](https://github.com/syulimo/energy-balance-signal/actions/workflows/tests.yml/badge.svg) ![python](https://img.shields.io/badge/python-3.10%2B-blue) ![license](https://img.shields.io/badge/license-MIT-green)
 
-> US crude and distillate weekly balances from EIA and CFTC data, an event study on WTI split by geopolitical regime, a walk-forward forecast of the weekly inventory print, a Hormuz reopening scenario tool, and the step an equity team needs: from the benchmark crack to the refining margin per barrel that Valero reports, with a nowcast for the quarter in progress and a weekly note.
+> US crude and distillate weekly balances from EIA and CFTC data, an event study on WTI split by geopolitical regime, a walk-forward forecast of the weekly inventory print, a Hormuz reopening scenario tool, and a bridge from the benchmark crack to the refining margin per barrel that Valero reports, with a nowcast for the quarter in progress and a weekly note.
+
+## Summary
+
+- **What it is:** weekly US crude and distillate balances from 13 EIA series and CFTC positioning, aligned to release dates so no forecast uses data before it was public.
+- **Real result so far:** the quarter-average Gulf Coast 3-2-1 crack forecasts Valero's reported refining margin with MAE 1.33 vs 2.24 $/bbl for last-quarter naive over 8 walk-forward quarters, direction right in 7 of 8; the bootstrap interval crosses zero, so this is suggestive (Section 4.2).
+- **Not yet run on real data:** the crude and distillate event study and the weekly print forecast. The pipeline is validated on synthetic data with planted effects (Section 4.3) and runs live with a free EIA API key.
 
 ## 0. Why this repository exists now
 
